@@ -1,0 +1,15 @@
+[Unit]
+Description=ClearContract PocketBase
+After=network.target
+
+[Service]
+Type=simple
+User=clearcontract
+WorkingDirectory=/opt/clearcontract/pb
+EnvironmentFile=/etc/clearcontract/pb.env
+ExecStart=/opt/clearcontract/pb/pocketbase serve --http=127.0.0.1:8090 --dir=/opt/clearcontract/pb/pb_data --migrationsDir=/opt/clearcontract/pb/pb_migrations --hooksDir=/opt/clearcontract/pb/pb_hooks
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

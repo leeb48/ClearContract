@@ -1,0 +1,13 @@
+# PocketBase binary (downloaded via pb/get-pocketbase.sh) and local data
+pb/pocketbase
+pb/pb_data/
+
+# local env files
+.env
+*.env.local
+
+# scratch
+*.log
+
+# Claude Code local settings
+.claude/settings.local.json
