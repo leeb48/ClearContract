@@ -7,9 +7,9 @@ APP_DIR=/opt/clearcontract
 APP_USER=clearcontract
 
 if [ "$(id -u)" -eq 0 ]; then
-  sudo -u "$APP_USER" bash "$0"
-  systemctl restart pocketbase clearcontract-web
-  exit 0
+    sudo -u "$APP_USER" bash "$0"
+    systemctl restart pocketbase clearcontract-web
+    exit 0
 fi
 
 cd "$APP_DIR"
@@ -19,10 +19,10 @@ bash pb/get-pocketbase.sh
 
 # NEXT_PUBLIC_* vars are inlined at build time — load them before building.
 if [ -f /etc/clearcontract/web.env ]; then
-  set -a
-  # shellcheck disable=SC1091
-  . /etc/clearcontract/web.env
-  set +a
+    set -a
+    # shellcheck disable=SC1091
+    . /etc/clearcontract/web.env
+    set +a
 fi
 
 cd web
