@@ -1,0 +1,33 @@
+{
+  "expectations": [
+    {
+      "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+      "passed": true,
+      "evidence": "Cites snapshot, quote_events IP/user-agent metadata, accepted_total server locking, T&C settings, Phases 4-5, and the card-deposit path as acceptance evidence."
+    },
+    {
+      "text": "Notices that quote e-signatures are explicitly listed in the plan's Out of Scope list (section 9)",
+      "passed": true,
+      "evidence": "\"it's already parked in your Out of Scope list, sensibly.\""
+    },
+    {
+      "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+      "passed": true,
+      "evidence": "Launch with the plain button vs typed-name/T&C/receipt hardening vs full drawn-signature e-signing — three distinct postures, each weighed."
+    },
+    {
+      "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+      "passed": true,
+      "evidence": "\"Short answer: no, don't add drawn-signature e-signing before launch\" plus a concrete three-item alternative bundle."
+    },
+    {
+      "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+      "passed": true,
+      "evidence": "\"roughly a day of work folded into Phases 4-5: one form field, one checkbox, a small schema addition.\""
+    }
+  ],
+  "summary": { "passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0 },
+  "notes": [
+    "Very strong baseline; substantively near-identical to the with-skill run. No git/build-state check, no decision-recording offer."
+  ]
+}

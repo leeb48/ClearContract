@@ -1,0 +1,26 @@
+{
+  "skill_name": "implement",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "money-utils-from-plan",
+      "prompt": "can you set up web/lib/money.ts for clearcontract? needs the pence formatting stuff and computeQuoteTotals like the plan describes. the plan is in clearcontract_project_plan.md",
+      "expected_output": "money.ts with integer-pence functions (lineTotal, computeQuoteTotals, cashDiscount, feeSurcharge) matching plan §5.1 math, unit tests included in the same change, terse report at the end",
+      "files": ["clearcontract_project_plan.md"]
+    },
+    {
+      "id": 1,
+      "eval_name": "status-machine-follows-precedent",
+      "prompt": "add a quote status helper in web/lib/status.ts — something that tells me if a transition is allowed (draft->sent etc). follow the plan's status machine",
+      "expected_output": "status.ts implementing exactly the transitions from plan §3.12 (including expired/changes_requested edges), table-style tests covering allowed AND forbidden transitions, terse report",
+      "files": ["clearcontract_project_plan.md"]
+    },
+    {
+      "id": 2,
+      "eval_name": "small-fix-stays-terse",
+      "prompt": "the formatPence function should show negative amounts like -£1.50 not £-1.50, can you fix it",
+      "expected_output": "minimal targeted fix with a regression test, verification run, report of only 1-3 lines with no headings or explanation padding",
+      "files": ["clearcontract_project_plan.md"]
+    }
+  ]
+}

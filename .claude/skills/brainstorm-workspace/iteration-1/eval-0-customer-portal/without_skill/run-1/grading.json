@@ -1,0 +1,33 @@
+{
+  "expectations": [
+    {
+      "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+      "passed": true,
+      "evidence": "Cites Out of Scope section 9, /q/[token] and /i/[token] pages, PocketBase collections/API rules, and Phases 3-8."
+    },
+    {
+      "text": "Notices that customer accounts/logins are explicitly deferred in the plan's Out of Scope list (section 9)",
+      "passed": true,
+      "evidence": "\"your own plan already made this call — 'customer accounts/logins' is explicitly in the Out of Scope list in section 9.\""
+    },
+    {
+      "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+      "passed": true,
+      "evidence": "Park it (defer); customer-scoped token page /c/[token]; magic-link upgrade later; full login portal implicitly the third."
+    },
+    {
+      "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+      "passed": true,
+      "evidence": "\"My recommendation: park it. Ship through Phase 8... build the token-based customer page first\" with a concrete trigger signal."
+    },
+    {
+      "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+      "passed": true,
+      "evidence": "\"easily a phase-sized chunk of work (a week+)\" for the portal; \"maybe a day or two of work\" for the token page."
+    }
+  ],
+  "summary": { "passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0 },
+  "notes": [
+    "Did not check git/build state; no offer to record the decision durably (offered a plan-doc edit instead)."
+  ]
+}

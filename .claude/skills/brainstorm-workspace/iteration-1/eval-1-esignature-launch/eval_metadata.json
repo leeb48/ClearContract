@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "esignature-launch",
+  "prompt": "quick question about the accept flow. a mate who does driveways said button-click acceptance feels a bit flimsy legally, he reckons customers should actually sign something. should I add e-signatures to the public quote page before I launch?",
+  "assertions": [
+    "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+    "Notices that quote e-signatures are explicitly listed in the plan's Out of Scope list (section 9)",
+    "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+    "Commits to a single clear recommendation rather than a neutral pros/cons list",
+    "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)"
+  ]
+}

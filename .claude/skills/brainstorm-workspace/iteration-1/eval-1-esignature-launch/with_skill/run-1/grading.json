@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+      "passed": true,
+      "evidence": "Cites the snapshot mechanism, quote_events with IP/user-agent, server-locked accepted_total, Stripe deposit path, Phase 4/5 placement, and proposes the accept payload change {method, name, agreed_terms} consistent with section 4."
+    },
+    {
+      "text": "Notices that quote e-signatures are explicitly listed in the plan's Out of Scope list (section 9)",
+      "passed": true,
+      "evidence": "\"the plan already made a call on this: quote e-signatures are explicitly in the Out of Scope list (section 9). Your mate's comment is a good reason to re-examine that call, not automatically overturn it.\""
+    },
+    {
+      "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+      "passed": true,
+      "evidence": "Three options: do nothing; typed-name + T&C checkbox (~0.5-1 day); full drawn/DocuSign e-signature (2-3 days or per-envelope fees)."
+    },
+    {
+      "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+      "passed": true,
+      "evidence": "\"My recommendation: option 2, and don't delay anything for it... Skip option 3 entirely unless a real customer someday disputes an accepted quote.\""
+    },
+    {
+      "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+      "passed": true,
+      "evidence": "\"roughly half a day to a day inside Phase 4/5. One extra field in the accept payload, no new collections, no new statuses\"; option 3 costed at 2-3 days plus mobile-conversion risk."
+    }
+  ],
+  "summary": { "passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0 },
+  "notes": [
+    "Checked git state and reframed 'before I launch' as a Phase 4/5 design decision being made early.",
+    "Steelmanned the mate's concern (cash/bank-transfer accept paths are evidentially thin) instead of dismissing it.",
+    "Offered to record the decision in docs/decisions.md."
+  ]
+}

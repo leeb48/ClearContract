@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+      "passed": true,
+      "evidence": "Cites Out of Scope section 9, the token-based public page decision, the customers collection not being an auth collection, Phase 4/6 sizing, and the 4-6 week phased plan."
+    },
+    {
+      "text": "Notices that customer accounts/logins are explicitly deferred in the plan's Out of Scope list (section 9)",
+      "passed": true,
+      "evidence": "\"'Customer accounts/logins' is explicitly in the Out of Scope list (section 9)... you'd be reversing a deliberate decision, so the bar is evidence, not vibes.\""
+    },
+    {
+      "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+      "passed": true,
+      "evidence": "Three options: defer entirely; tokenized /c/[token] customer page with no login (~1-2 days); full login portal (5-8 days). Each argued on its merits."
+    },
+    {
+      "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+      "passed": true,
+      "evidence": "\"My recommendation: option 1 now, with option 2 as the earmarked upgrade... The login version I'd say no to outright.\" Includes the evidence trigger for revisiting (customers asking to resend links)."
+    },
+    {
+      "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+      "passed": true,
+      "evidence": "\"Honestly 5-8 days for one part-time dev, plus a permanent security surface\"; token-page option costed at 1-2 days including tests, one field, one hook endpoint, one page."
+    }
+  ],
+  "summary": { "passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0 },
+  "notes": [
+    "Also checked git state (zero commits) and used it in the argument, per the skill's 'ground yourself' step.",
+    "Closed by offering to record the decision in docs/decisions.md, per the skill."
+  ]
+}

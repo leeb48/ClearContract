@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Engages with the plan's specific PocketBase rationale (pb_hooks for server logic, single binary / two deployable pieces, migrations as code) rather than a generic Supabase-vs-PocketBase feature comparison",
+      "passed": true,
+      "evidence": "Argues from pb_hooks/goja limitations (no npm, no Stripe SDK, hand-rolled webhook verification), the section 7.2 CI bootstrap, the plan's own SSR-auth hedge, and the two-deployable-pieces property."
+    },
+    {
+      "text": "Acknowledges the user's timing point — that pre-Phase-0 is the cheapest moment to switch — rather than dismissing the question",
+      "passed": true,
+      "evidence": "\"You have zero commits... the switching cost right now is rewriting sections 2-5 of the plan (call it one evening to a day) and zero lines of code. At Phase 4 it would be weeks.\""
+    },
+    {
+      "text": "Presents at least two genuine alternatives / framings (e.g. switch now, stay, or a criteria-based tripwire for switching later)",
+      "passed": true,
+      "evidence": "Switch now (recommended) vs the honest case for staying (VPS cost, cron, SQLite adequacy, sunk planning) — plus a motive gut-check condition before switching."
+    },
+    {
+      "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+      "passed": true,
+      "evidence": "\"My recommendation: switch, now\" with two explicit conditions and 'this is the last free re-litigation.'"
+    },
+    {
+      "text": "Weighs the decision against solo part-time development reality (ops burden, hosting cost, learning curve) with concrete specifics",
+      "passed": true,
+      "evidence": "€5/mo Hetzner vs $25/mo Supabase Pro (free tier pausing flagged as a dealbreaker for live quote links), 'fewer things broken at 11pm on a Tuesday', ~90% of the plan surviving, one-day translation cost."
+    }
+  ],
+  "summary": { "passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0 },
+  "notes": [
+    "Went beyond the user's framing to the strongest Supabase argument (payments code in goja).",
+    "Anti-churn guard: distinguishes ops-risk motive from shiny-tech motive.",
+    "Offered docs/decisions.md record and asked before touching the plan document, per the skill."
+  ]
+}

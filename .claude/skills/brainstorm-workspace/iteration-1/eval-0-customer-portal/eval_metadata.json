@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "customer-portal",
+  "prompt": "I've been thinking - what if customers could log in and see all their quotes and invoices from me in one place? like a little portal. is that worth building or am I overcomplicating it",
+  "assertions": [
+    "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+    "Notices that customer accounts/logins are explicitly deferred in the plan's Out of Scope list (section 9)",
+    "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+    "Commits to a single clear recommendation rather than a neutral pros/cons list",
+    "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)"
+  ]
+}

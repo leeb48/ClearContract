@@ -1,0 +1,26 @@
+{
+  "skill_name": "brainstorm",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "customer-portal",
+      "prompt": "I've been thinking - what if customers could log in and see all their quotes and invoices from me in one place? like a little portal. is that worth building or am I overcomplicating it",
+      "expected_output": "A grounded discussion that notices customer accounts/logins are explicitly in the plan's Out of Scope list, weighs value to sole traders vs build cost, offers alternatives (e.g. the existing token links already act as a portal-lite), and commits to a recommendation.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "eval_name": "esignature-launch",
+      "prompt": "quick question about the accept flow. a mate who does driveways said button-click acceptance feels a bit flimsy legally, he reckons customers should actually sign something. should I add e-signatures to the public quote page before I launch?",
+      "expected_output": "Notices quote e-signatures are in the Out of Scope list, discusses whether click-to-accept plus the events log is adequate, offers alternatives (defer, lightweight typed-name signature, full e-sign), and gives a clear recommendation about launch scope.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "eval_name": "pocketbase-vs-supabase",
+      "prompt": "before I get too deep into phase 0... im second guessing pocketbase. supabase gives me postgres + auth + edge functions and its all hosted for me. should I switch now while its still cheap to change?",
+      "expected_output": "Engages with the plan's specific PocketBase rationale (pb_hooks, single binary, two deployable pieces) rather than a generic comparison, acknowledges this is the cheapest moment to switch, pressure-tests both options for a solo dev, and commits to a recommendation.",
+      "files": []
+    }
+  ]
+}

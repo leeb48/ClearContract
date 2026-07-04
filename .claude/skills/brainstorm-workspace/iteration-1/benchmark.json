@@ -1,0 +1,329 @@
+{
+  "metadata": {
+    "skill_name": "brainstorm",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-07-02T21:41:54Z",
+    "evals_run": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 171.4,
+        "tokens": 38565,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+          "passed": true,
+          "evidence": "Cites Out of Scope section 9, the token-based public page decision, the customers collection not being an auth collection, Phase 4/6 sizing, and the 4-6 week phased plan."
+        },
+        {
+          "text": "Notices that customer accounts/logins are explicitly deferred in the plan's Out of Scope list (section 9)",
+          "passed": true,
+          "evidence": "\"'Customer accounts/logins' is explicitly in the Out of Scope list (section 9)... you'd be reversing a deliberate decision, so the bar is evidence, not vibes.\""
+        },
+        {
+          "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+          "passed": true,
+          "evidence": "Three options: defer entirely; tokenized /c/[token] customer page with no login (~1-2 days); full login portal (5-8 days). Each argued on its merits."
+        },
+        {
+          "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+          "passed": true,
+          "evidence": "\"My recommendation: option 1 now, with option 2 as the earmarked upgrade... The login version I'd say no to outright.\" Includes the evidence trigger for revisiting (customers asking to resend links)."
+        },
+        {
+          "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+          "passed": true,
+          "evidence": "\"Honestly 5-8 days for one part-time dev, plus a permanent security surface\"; token-page option costed at 1-2 days including tests, one field, one hook endpoint, one page."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 511.6,
+        "tokens": 39377,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+          "passed": true,
+          "evidence": "Cites the snapshot mechanism, quote_events with IP/user-agent, server-locked accepted_total, Stripe deposit path, Phase 4/5 placement, and proposes the accept payload change {method, name, agreed_terms} consistent with section 4."
+        },
+        {
+          "text": "Notices that quote e-signatures are explicitly listed in the plan's Out of Scope list (section 9)",
+          "passed": true,
+          "evidence": "\"the plan already made a call on this: quote e-signatures are explicitly in the Out of Scope list (section 9). Your mate's comment is a good reason to re-examine that call, not automatically overturn it.\""
+        },
+        {
+          "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+          "passed": true,
+          "evidence": "Three options: do nothing; typed-name + T&C checkbox (~0.5-1 day); full drawn/DocuSign e-signature (2-3 days or per-envelope fees)."
+        },
+        {
+          "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+          "passed": true,
+          "evidence": "\"My recommendation: option 2, and don't delay anything for it... Skip option 3 entirely unless a real customer someday disputes an accepted quote.\""
+        },
+        {
+          "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+          "passed": true,
+          "evidence": "\"roughly half a day to a day inside Phase 4/5. One extra field in the accept payload, no new collections, no new statuses\"; option 3 costed at 2-3 days plus mobile-conversion risk."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 172.0,
+        "tokens": 43997,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Engages with the plan's specific PocketBase rationale (pb_hooks for server logic, single binary / two deployable pieces, migrations as code) rather than a generic Supabase-vs-PocketBase feature comparison",
+          "passed": true,
+          "evidence": "Argues from pb_hooks/goja limitations (no npm, no Stripe SDK, hand-rolled webhook verification), the section 7.2 CI bootstrap, the plan's own SSR-auth hedge, and the two-deployable-pieces property."
+        },
+        {
+          "text": "Acknowledges the user's timing point \u2014 that pre-Phase-0 is the cheapest moment to switch \u2014 rather than dismissing the question",
+          "passed": true,
+          "evidence": "\"You have zero commits... the switching cost right now is rewriting sections 2-5 of the plan (call it one evening to a day) and zero lines of code. At Phase 4 it would be weeks.\""
+        },
+        {
+          "text": "Presents at least two genuine alternatives / framings (e.g. switch now, stay, or a criteria-based tripwire for switching later)",
+          "passed": true,
+          "evidence": "Switch now (recommended) vs the honest case for staying (VPS cost, cron, SQLite adequacy, sunk planning) \u2014 plus a motive gut-check condition before switching."
+        },
+        {
+          "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+          "passed": true,
+          "evidence": "\"My recommendation: switch, now\" with two explicit conditions and 'this is the last free re-litigation.'"
+        },
+        {
+          "text": "Weighs the decision against solo part-time development reality (ops burden, hosting cost, learning curve) with concrete specifics",
+          "passed": true,
+          "evidence": "\u20ac5/mo Hetzner vs $25/mo Supabase Pro (free tier pausing flagged as a dealbreaker for live quote links), 'fewer things broken at 11pm on a Tuesday', ~90% of the plan surviving, one-day translation cost."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 58.0,
+        "tokens": 35801,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+          "passed": true,
+          "evidence": "Cites Out of Scope section 9, /q/[token] and /i/[token] pages, PocketBase collections/API rules, and Phases 3-8."
+        },
+        {
+          "text": "Notices that customer accounts/logins are explicitly deferred in the plan's Out of Scope list (section 9)",
+          "passed": true,
+          "evidence": "\"your own plan already made this call \u2014 'customer accounts/logins' is explicitly in the Out of Scope list in section 9.\""
+        },
+        {
+          "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+          "passed": true,
+          "evidence": "Park it (defer); customer-scoped token page /c/[token]; magic-link upgrade later; full login portal implicitly the third."
+        },
+        {
+          "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+          "passed": true,
+          "evidence": "\"My recommendation: park it. Ship through Phase 8... build the token-based customer page first\" with a concrete trigger signal."
+        },
+        {
+          "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+          "passed": true,
+          "evidence": "\"easily a phase-sized chunk of work (a week+)\" for the portal; \"maybe a day or two of work\" for the token page."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 162.3,
+        "tokens": 37072,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Grounds the advice in the project plan: cites specific, accurate details from clearcontract_project_plan.md (phases, schema, architecture decisions, or the Out of Scope list)",
+          "passed": true,
+          "evidence": "Cites snapshot, quote_events IP/user-agent metadata, accepted_total server locking, T&C settings, Phases 4-5, and the card-deposit path as acceptance evidence."
+        },
+        {
+          "text": "Notices that quote e-signatures are explicitly listed in the plan's Out of Scope list (section 9)",
+          "passed": true,
+          "evidence": "\"it's already parked in your Out of Scope list, sensibly.\""
+        },
+        {
+          "text": "Presents at least two genuine alternatives to the user's proposal (a defended 'defer / do nothing' counts as one)",
+          "passed": true,
+          "evidence": "Launch with the plain button vs typed-name/T&C/receipt hardening vs full drawn-signature e-signing \u2014 three distinct postures, each weighed."
+        },
+        {
+          "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+          "passed": true,
+          "evidence": "\"Short answer: no, don't add drawn-signature e-signing before launch\" plus a concrete three-item alternative bundle."
+        },
+        {
+          "text": "Weighs build cost concretely for a solo part-time developer (time estimates or specific complexity costs like new collections/hooks)",
+          "passed": true,
+          "evidence": "\"roughly a day of work folded into Phases 4-5: one form field, one checkbox, a small schema addition.\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 163.9,
+        "tokens": 28269,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Engages with the plan's specific PocketBase rationale (pb_hooks for server logic, single binary / two deployable pieces, migrations as code) rather than a generic Supabase-vs-PocketBase feature comparison",
+          "passed": true,
+          "evidence": "Argues from pb_hooks/goja (no npm, hand-rolled Stripe verification, PDF-in-goja called out), pb_data backups, the two-deployable-pieces property, and section-by-section plan impact."
+        },
+        {
+          "text": "Acknowledges the user's timing point \u2014 that pre-Phase-0 is the cheapest moment to switch \u2014 rather than dismissing the question",
+          "passed": true,
+          "evidence": "\"you're right that now is the cheapest it will ever be. The only artifact that exists is the plan document.\""
+        },
+        {
+          "text": "Presents at least two genuine alternatives / framings (e.g. switch now, stay, or a criteria-based tripwire for switching later)",
+          "passed": true,
+          "evidence": "Switch to Supabase; stay on PocketBase; and a third option: stay but relocate server logic to Next.js route handlers with an admin token."
+        },
+        {
+          "text": "Commits to a single clear recommendation rather than a neutral pros/cons list",
+          "passed": true,
+          "evidence": "\"Short answer: yes, I'd switch\" and a concrete closing directive (Supabase + route handlers, update plan sections before Phase 0)."
+        },
+        {
+          "text": "Weighs the decision against solo part-time development reality (ops burden, hosting cost, learning curve) with concrete specifics",
+          "passed": true,
+          "evidence": "$25/mo Pro vs \u20ac4/mo Hetzner, free-tier pausing, RLS being easier to get subtly wrong, heavier local dev/CI, 'ops forever on the database that records who paid you.'"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 285.0,
+        "stddev": 196.2416,
+        "min": 171.4,
+        "max": 511.6
+      },
+      "tokens": {
+        "mean": 40646.3333,
+        "stddev": 2930.0275,
+        "min": 38565,
+        "max": 43997
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 128.0667,
+        "stddev": 60.6848,
+        "min": 58.0,
+        "max": 163.9
+      },
+      "tokens": {
+        "mean": 33714.0,
+        "stddev": 4758.1382,
+        "min": 28269,
+        "max": 37072
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+156.9",
+      "tokens": "+6932"
+    }
+  },
+  "notes": [
+    "Both configurations pass 5/5 assertions on all three evals (delta +0.00). The assertions do not discriminate because the baseline (Claude Code running inside this repo) also reads clearcontract_project_plan.md unprompted \u2014 the plan being the only file in the repo makes grounding nearly automatic.",
+    "The skill's observable value in this iteration is behavioral, not pass/fail: all 3 with-skill runs checked git state and anchored advice to 'nothing built yet'; at most 1 of 3 baselines did. All 3 with-skill runs closed by offering to record the decision in docs/decisions.md for future sessions; no baseline did. With-skill runs added re-litigation guards ('this is the last free re-litigation', 'the bar is evidence, not vibes').",
+    "Expect the skill's delta to grow as the repo fills with code: the baseline found the plan easily today because it is essentially the only file; once source code dominates the tree, unprompted plan-grounding is much less likely, while the skill mandates it plus a git-state check.",
+    "Cost of the skill is modest: with-skill runs averaged ~40.6k tokens vs ~33.7k baseline (+~20%), mostly from the mandated plan read + git check.",
+    "Watch-item for iteration 2: on pocketbase-vs-supabase, both configurations recommended switching stacks. If the user considers that wrong (the skill says re-litigating the stack 'needs strong evidence, not vibes'), the skill needs a stronger status-quo prior for settled decisions."
+  ]
+}

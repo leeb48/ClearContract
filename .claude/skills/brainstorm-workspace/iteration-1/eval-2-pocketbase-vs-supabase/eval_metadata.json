@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "pocketbase-vs-supabase",
+  "prompt": "before I get too deep into phase 0... im second guessing pocketbase. supabase gives me postgres + auth + edge functions and its all hosted for me. should I switch now while its still cheap to change?",
+  "assertions": [
+    "Engages with the plan's specific PocketBase rationale (pb_hooks for server logic, single binary / two deployable pieces, migrations as code) rather than a generic Supabase-vs-PocketBase feature comparison",
+    "Acknowledges the user's timing point — that pre-Phase-0 is the cheapest moment to switch — rather than dismissing the question",
+    "Presents at least two genuine alternatives / framings (e.g. switch now, stay, or a criteria-based tripwire for switching later)",
+    "Commits to a single clear recommendation rather than a neutral pros/cons list",
+    "Weighs the decision against solo part-time development reality (ops burden, hosting cost, learning curve) with concrete specifics"
+  ]
+}
