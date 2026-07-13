@@ -28,6 +28,15 @@ Reference code as `path/to/file.ts:42` so locations are clickable. Keep the whol
 ## Style
 
 - Concise but not clipped: complete sentences, technical terms spelled out on first use, no filler ("as you can see", "essentially", "it's worth noting").
+- **Draw flows instead of narrating them.** Whenever the **What** is a chain of cause and effect — a request lifecycle, a hook firing order, a status machine, a render/fetch loop, "A triggers B which re-triggers A" — prose forces the reader to build the picture in their head, and they lose the thread by the third step. Put the chain in a small ASCII diagram inside a fenced code block, then spend the prose on the *why*, not on re-describing the arrows. If you notice yourself writing a paragraph that traces step after step, that paragraph wants to be a diagram. Example of the shape (a feedback loop):
+
+  ```
+  render ──▶ authStore.record (new object) ──▶ effect re-runs ──▶ fetch
+    ▲                                                              │
+    └────────────────── setSettings(new record) ◀─────────────────┘
+  ```
+
+  Output renders as markdown in a terminal — use fenced ASCII like this, never Mermaid or images. Keep diagrams small (one idea, ≤10 boxes); two small diagrams beat one sprawling one. A diagram counts toward the one-screen budget, so it replaces prose rather than adding to it.
 - Explain to a competent developer who is new to *this* codebase — assume they know React and SQL; don't assume they know PocketBase hook semantics or why money is integer cents.
 - Honesty over polish: if something in the code is surprising, fragile, or looks like a bug, say so in one line. Don't fix it — that's `/implement`'s job — and don't editorialize beyond the one line.
 - This skill never modifies files. If the user's question is really a change request in disguise ("why doesn't this handle X?" where X is a missing feature), answer the question, then note the gap belongs to a phase or to `/implement`.

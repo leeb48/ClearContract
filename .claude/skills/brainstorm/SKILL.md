@@ -40,6 +40,15 @@ Keep these fixed constraints in mind — they decide most trade-offs:
 - This is a dialogue, not a report. No heading-heavy documents for a two-line question — match depth to the question's weight. A quick "is X worth it?" deserves a few sharp paragraphs; a stack re-evaluation deserves more structure.
 - Use numbers over adjectives: "roughly 3 days plus a new collection and two hooks" beats "significant effort."
 - Don't write implementation code — that's for after the decision. Sketching a schema shape, a status flow, or a one-line API route to make an option concrete is fine.
+- **Draw flows instead of narrating them.** Whenever the explanation is a chain of cause and effect — a request lifecycle, a status machine, a render/fetch loop, a deploy pipeline, "A triggers B which re-triggers A" — prose forces the reader to build the picture in their head, and they lose the thread by the third step. Put the chain in a small ASCII diagram inside a fenced code block, then spend the prose on *why* it matters, not on re-describing the arrows. The same trigger applies to your own writing: if you notice a paragraph tracing step after step, that paragraph wants to be a diagram. Example of the shape (a feedback loop):
+
+  ```
+  render ──▶ authStore.record (new object) ──▶ effect re-runs ──▶ fetch
+    ▲                                                              │
+    └────────────────── setSettings(new record) ◀─────────────────┘
+  ```
+
+  Output renders as markdown in a terminal — use fenced ASCII like this, never Mermaid or images. Keep diagrams small (one idea, ≤10 boxes); two small diagrams beat one sprawling one.
 - Disagreement is a feature. If every response ends in "great idea, go for it," the skill has failed.
 
 ## When a decision lands
