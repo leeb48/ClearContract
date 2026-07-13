@@ -9,12 +9,16 @@ export default function Home() {
           ClearContract
         </h1>
         <p className="text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-          Professional quotes and invoices for independent contractors. Send a quote by
-          email, let your customer accept and pay a deposit online, and stop chasing.
+          Professional quotes and invoices for independent contractors. Send a
+          quote by email, let your customer accept and pay a deposit online, and
+          stop chasing.
         </p>
         <p className="text-sm text-zinc-400 dark:text-zinc-500">
           In development — contact{" "}
-          <a href="mailto:quotes@clearcontract.appassembly.net" className="underline">
+          <a
+            href="mailto:quotes@clearcontract.appassembly.net"
+            className="underline"
+          >
             quotes@clearcontract.appassembly.net
           </a>
         </p>

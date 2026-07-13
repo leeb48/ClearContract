@@ -32,7 +32,10 @@ const arbQuote: fc.Arbitrary<QuoteMoneyInput> = fc.record({
   line_items: fc.array(arbItem, { maxLength: 20 }),
   extras: fc.array(arbItem, { maxLength: 5 }),
   tax_enabled: fc.boolean(),
-  tax_rate: fc.oneof(fc.constant(0), fc.float({ min: 0, max: 30, noNaN: true })),
+  tax_rate: fc.oneof(
+    fc.constant(0),
+    fc.float({ min: 0, max: 30, noNaN: true }),
+  ),
   deposit_enabled: fc.boolean(),
   deposit_type: fc.constantFrom<"fixed" | "percent">("fixed", "percent"),
   deposit_value: fc.integer({ min: 0, max: 10_000_000 }),
@@ -46,15 +49,28 @@ describe("computeQuoteTotals properties", () => {
     fc.assert(
       fc.property(arbQuote, (q) => {
         const t = computeQuoteTotals(q);
-        const amounts = [t.subtotal, t.taxAmount, t.total, t.depositAmount, t.remaining];
+        const amounts = [
+          t.subtotal,
+          t.taxAmount,
+          t.total,
+          t.depositAmount,
+          t.remaining,
+        ];
         if (t.cash) {
-          amounts.push(t.cash.discountAmount, t.cash.subtotal, t.cash.taxAmount, t.cash.total, t.cash.depositAmount, t.cash.remaining);
+          amounts.push(
+            t.cash.discountAmount,
+            t.cash.subtotal,
+            t.cash.taxAmount,
+            t.cash.total,
+            t.cash.depositAmount,
+            t.cash.remaining,
+          );
         }
         for (const a of amounts) {
           expect(Number.isInteger(a)).toBe(true);
           expect(a).toBeGreaterThanOrEqual(0);
         }
-      })
+      }),
     );
   });
 
@@ -64,10 +80,10 @@ describe("computeQuoteTotals properties", () => {
         const t = computeQuoteTotals(q);
         const expected = [...q.line_items, ...(q.extras ?? [])].reduce(
           (s, i) => s + lineTotal(i),
-          0
+          0,
         );
         expect(t.subtotal).toBe(expected);
-      })
+      }),
     );
   });
 
@@ -81,7 +97,7 @@ describe("computeQuoteTotals properties", () => {
             : 0;
         expect(t.taxAmount).toBe(expectedTax);
         expect(t.total).toBe(t.subtotal + t.taxAmount);
-      })
+      }),
     );
   });
 
@@ -91,7 +107,7 @@ describe("computeQuoteTotals properties", () => {
         const t = computeQuoteTotals(q);
         expect(t.depositAmount).toBeLessThanOrEqual(t.total);
         expect(t.remaining).toBe(t.total - t.depositAmount);
-      })
+      }),
     );
   });
 
@@ -109,14 +125,20 @@ describe("computeQuoteTotals properties", () => {
         expect(t.cash.total).toBe(t.cash.subtotal + t.cash.taxAmount);
         expect(t.cash.total).toBeLessThanOrEqual(t.total);
         expect(t.cash.depositAmount).toBeLessThanOrEqual(t.cash.total);
-      })
+      }),
     );
   });
 });
 
 describe("computeQuoteTotals examples", () => {
   const items: LineItem[] = [
-    { id: "1", description: "Driveway base", type: "fixed", qty: 2, unit_price: 50_000 },
+    {
+      id: "1",
+      description: "Driveway base",
+      type: "fixed",
+      qty: 2,
+      unit_price: 50_000,
+    },
     { id: "2", description: "Labor", type: "hourly", hours: 3, rate: 8_000 },
   ];
 
@@ -130,7 +152,11 @@ describe("computeQuoteTotals examples", () => {
   });
 
   it("applies sales tax with fractional rate", () => {
-    const t = computeQuoteTotals({ line_items: items, tax_enabled: true, tax_rate: 8.25 });
+    const t = computeQuoteTotals({
+      line_items: items,
+      tax_enabled: true,
+      tax_rate: 8.25,
+    });
     expect(t.taxAmount).toBe(10_230); // 124000 * 8.25% = 10230
     expect(t.total).toBe(134_230);
   });
@@ -166,8 +192,16 @@ describe("computeQuoteTotals examples", () => {
   });
 
   it("hourly fractional hours round to the cent", () => {
-    expect(lineTotal({ id: "x", description: "", type: "hourly", hours: 1.5, rate: 3_333 })).toBe(
-      5_000 // 4999.5 rounds
+    expect(
+      lineTotal({
+        id: "x",
+        description: "",
+        type: "hourly",
+        hours: 1.5,
+        rate: 3_333,
+      }),
+    ).toBe(
+      5_000, // 4999.5 rounds
     );
   });
 });

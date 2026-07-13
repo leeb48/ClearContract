@@ -44,6 +44,7 @@ Leave every change uncommitted in the working tree. The user reviews the diff an
 
 Never report a change as done on faith. Run whatever the repo provides, narrowest scope first:
 
+- Format first: `npm run format` from `web/` (pinned Prettier; covers `web/` plus `pb_hooks/` and `pb_migrations/`). The user's editor formats on save with this same config — code that lands already formatted means their save produces no follow-up diff, and the diff they review is purely semantic. For file types Prettier doesn't cover (shell scripts, systemd units), match the style of the existing files in `deploy/`.
 - Typecheck (`tsc --noEmit`) and lint if configured.
 - Tests covering the touched area; the full suite when the change is cross-cutting.
 - If verification tooling doesn't exist yet (early phases), say so in one line rather than implying the change was verified.

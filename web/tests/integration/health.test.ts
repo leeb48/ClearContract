@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-const PB_URL = "http://127.0.0.1:8090";
+const PB_URL = "http://127.0.0.1:8091";
 
 describe("pocketbase test instance", () => {
   it("answers the health endpoint", async () => {

@@ -57,7 +57,11 @@ export function lineTotal(item: LineItem): number {
   return Math.round(raw);
 }
 
-function taxOn(subtotal: number, enabled: boolean | undefined, rate: number | undefined): number {
+function taxOn(
+  subtotal: number,
+  enabled: boolean | undefined,
+  rate: number | undefined,
+): number {
   if (!enabled || !rate || rate <= 0) return 0;
   return Math.round((subtotal * rate) / 100);
 }
@@ -66,20 +70,22 @@ function depositOn(
   total: number,
   enabled: boolean | undefined,
   type: AmountType | undefined,
-  value: number | undefined
+  value: number | undefined,
 ): number {
   if (!enabled || !value || value <= 0) return 0;
-  if (type === "percent") return Math.min(Math.round((total * value) / 100), total);
+  if (type === "percent")
+    return Math.min(Math.round((total * value) / 100), total);
   return Math.min(Math.round(value), total); // fixed deposits are capped at the total
 }
 
 export function cashDiscountAmount(
   subtotal: number,
   type: AmountType | undefined,
-  value: number | undefined
+  value: number | undefined,
 ): number {
   if (!value || value <= 0) return 0;
-  if (type === "percent") return Math.min(Math.round((subtotal * value) / 100), subtotal);
+  if (type === "percent")
+    return Math.min(Math.round((subtotal * value) / 100), subtotal);
   return Math.min(Math.round(value), subtotal);
 }
 
@@ -88,7 +94,12 @@ export function computeQuoteTotals(q: QuoteMoneyInput): QuoteTotals {
   const subtotal = items.reduce((sum, item) => sum + lineTotal(item), 0);
   const taxAmount = taxOn(subtotal, q.tax_enabled, q.tax_rate);
   const total = subtotal + taxAmount;
-  const depositAmount = depositOn(total, q.deposit_enabled, q.deposit_type, q.deposit_value);
+  const depositAmount = depositOn(
+    total,
+    q.deposit_enabled,
+    q.deposit_type,
+    q.deposit_value,
+  );
 
   let cash: CashTotals | null = null;
   const discountAmount = q.cash_enabled
@@ -101,7 +112,12 @@ export function computeQuoteTotals(q: QuoteMoneyInput): QuoteTotals {
     const cashTotal = cashSubtotal + cashTax;
     // Percent deposits recompute against the discounted total; fixed deposits stay
     // as-is but are capped at the discounted total (plan §5.1).
-    const cashDeposit = depositOn(cashTotal, q.deposit_enabled, q.deposit_type, q.deposit_value);
+    const cashDeposit = depositOn(
+      cashTotal,
+      q.deposit_enabled,
+      q.deposit_type,
+      q.deposit_value,
+    );
     cash = {
       discountAmount,
       subtotal: cashSubtotal,
@@ -112,7 +128,14 @@ export function computeQuoteTotals(q: QuoteMoneyInput): QuoteTotals {
     };
   }
 
-  return { subtotal, taxAmount, total, depositAmount, remaining: total - depositAmount, cash };
+  return {
+    subtotal,
+    taxAmount,
+    total,
+    depositAmount,
+    remaining: total - depositAmount,
+    cash,
+  };
 }
 
 /** Stripe fee pass-through surcharge: 2.9% + 30¢, rounded up (plan §5.1). */
@@ -122,5 +145,7 @@ export function feeSurcharge(amount: number): number {
 }
 
 export function formatCents(cents: number, currency = "USD"): string {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency }).format(cents / 100);
+  return new Intl.NumberFormat("en-US", { style: "currency", currency }).format(
+    cents / 100,
+  );
 }
