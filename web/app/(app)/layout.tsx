@@ -14,7 +14,7 @@ const NAV = [
 	{ href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
 	{ href: '/quotes', label: 'Quotes', icon: FileText, disabled: true },
 	{ href: '/invoices', label: 'Invoices', icon: Receipt, disabled: true },
-	{ href: '/customers', label: 'Customers', icon: Users, disabled: true },
+	{ href: '/customers', label: 'Customers', icon: Users },
 	{
 		href: '/templates',
 		label: 'Templates',

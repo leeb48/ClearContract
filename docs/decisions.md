@@ -51,3 +51,10 @@ Offsite backup of `pb_data/` (PocketBase backup → B2/R2) deferred while all da
 - **No email verification requirement until Phase 4** — needs working transactional email (Resend account review still pending), and retrofitting is cheap: flip the collection option + add the verify flow when email exists.
 - **Hook creates `business_settings` only** — `payment_settings` (Phase 5) and `notification_settings` (Phase 8) get their collections, hook lines, and a trivial backfill in their own phases; considered creating all three now, rejected as scope creep into phases that may reshape those fields.
 - Auth stays client-rendered behind a guard (plan §5.6's recommendation), not cookie-SSR.
+
+## 2026-07-13 — Phase 2 scope decisions
+
+- **Hard delete for customers, no guard yet** — quotes don't exist to orphan. Tripwire: Phase 3 must decide the delete-with-quotes behavior (likely block deletion while quotes reference the customer) before shipping the builder.
+- **Profile page stays thin** — contact details + notes + edit/delete only; the quote history section arrives with Phase 3 data. Considered stubbing an empty "Quotes" card, rejected — invented content.
+- **Search is server-side** — debounced PB filter (`name ~ q || email ~ q || phone ~ q` via `pb.filter()`), not load-all-and-filter-client-side. Same code size at sole-trader scale, and it's the pattern the quotes list will reuse.
+- **`CustomerCombobox` built standalone now** — search/pick/inline-create in `components/customer-combobox.tsx` with Testing Library coverage (no host page exists yet for e2e; the quote builder e2e covers it in Phase 3). Server-side search, base-ui Combobox with client filtering disabled.
